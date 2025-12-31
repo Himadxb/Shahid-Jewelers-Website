@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { GoldProvider } from './context/GoldContext';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
@@ -52,6 +52,10 @@ const PageWrapper = ({ children }) => (
   </motion.div>
 );
 
+import GoldDustBackground from './components/GoldDustBackground';
+
+// ... (keep imports)
+
 function App() {
   return (
     <NotificationProvider>
@@ -59,7 +63,8 @@ function App() {
         <CartProvider>
           <GoldProvider>
             <Router>
-              <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+                <GoldDustBackground />
                 <Navbar />
                 <main style={{ flex: 1 }}>
                   <AnimatedRoutes />
