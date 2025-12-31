@@ -18,18 +18,47 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log("AuthProvider: Setting up onAuthStateChanged");
+    let mounted = true;
+
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      console.log("AuthProvider: onAuthStateChanged triggered", user ? "User found" : "No user");
+      if (!mounted) return;
+      
       if (user) {
-        // Fetch additional user data from Firestore if needed
-        const userDoc = await getDoc(doc(db, "users", user.uid));
-        setUser({ ...user, ...userDoc.data() });
+        try {
+          // Fetch additional user data from Firestore if needed
+          const userDoc = await getDoc(doc(db, "users", user.uid));
+          if (mounted) {
+            if (userDoc.exists()) {
+               setUser({ ...user, ...userDoc.data() });
+            } else {
+               setUser(user);
+            }
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+          if (mounted) setUser(user);
+        }
       } else {
-        setUser(null);
+        if (mounted) setUser(null);
       }
-      setLoading(false);
+      if (mounted) setLoading(false);
     });
 
-    return unsubscribe;
+    // Safety timeout: If Firebase takes too long, stop loading
+    const timeoutId = setTimeout(() => {
+      if (mounted && loading) {
+        console.warn("AuthProvider: Firebase auth timed out, forcing loading false");
+        setLoading(false);
+      }
+    }, 2000);
+
+    return () => {
+      mounted = false;
+      unsubscribe();
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   const signup = async (email, password, name) => {
