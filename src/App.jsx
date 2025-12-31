@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { GoldProvider } from './context/GoldContext';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
@@ -54,7 +54,7 @@ const PageWrapper = ({ children }) => (
 
 import GoldDustBackground from './components/GoldDustBackground';
 
-// ... (keep imports)
+
 
 function App() {
   return (
