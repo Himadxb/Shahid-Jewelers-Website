@@ -13,6 +13,7 @@ const LiveGold = () => {
   const pricePerGram24K_AED = goldPriceAED / GRAMS_PER_OZ;
   const pricePerGram22K_AED = pricePerGram24K_AED * (22 / 24);
   const pricePerGram21K_AED = pricePerGram24K_AED * (21 / 24);
+  const pricePerGram18K_AED = pricePerGram24K_AED * (18 / 24);
   const pricePerTola_AED = pricePerGram24K_AED * GRAMS_PER_TOLA;
   const pricePerKG_AED = pricePerGram24K_AED * 1000;
 
@@ -20,6 +21,7 @@ const LiveGold = () => {
   const pricePerGram24K_USD = goldPriceUSD / GRAMS_PER_OZ;
   const pricePerGram22K_USD = pricePerGram24K_USD * (22 / 24);
   const pricePerGram21K_USD = pricePerGram24K_USD * (21 / 24);
+  const pricePerGram18K_USD = pricePerGram24K_USD * (18 / 24);
   const pricePerTola_USD = pricePerGram24K_USD * GRAMS_PER_TOLA;
   const pricePerKG_USD = pricePerGram24K_USD * 1000;
 
@@ -84,6 +86,7 @@ const LiveGold = () => {
               { label: '24K Gold / gram', valueAED: pricePerGram24K_AED, valueUSD: pricePerGram24K_USD },
               { label: '22K Gold / gram', valueAED: pricePerGram22K_AED, valueUSD: pricePerGram22K_USD },
               { label: '21K Gold / gram', valueAED: pricePerGram21K_AED, valueUSD: pricePerGram21K_USD },
+              { label: '18K Gold / gram', valueAED: pricePerGram18K_AED, valueUSD: pricePerGram18K_USD },
               { label: 'Spot Gold / oz', valueAED: goldPriceAED, valueUSD: goldPriceUSD },
               { label: 'Gold / tola', valueAED: pricePerTola_AED, valueUSD: pricePerTola_USD },
               { label: 'Gold / KG', valueAED: pricePerKG_AED, valueUSD: pricePerKG_USD },

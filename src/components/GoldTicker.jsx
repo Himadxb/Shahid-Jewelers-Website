@@ -27,7 +27,7 @@ const GoldTicker = () => {
     }}>
       <div className="container flex justify-between items-center">
         <div className="flex items-center gap-4">
-          <span style={{ color: 'var(--color-gold-primary)', fontWeight: 'bold' }}>LIVE GOLD RATE (1oz)</span>
+          <span style={{ color: 'var(--color-gold-primary)', fontWeight: 'bold' }}>LIVE GOLD RATE (24K 1oz)</span>
           <div className="flex items-center gap-2">
             <span>USD: ${goldPriceUSD.toLocaleString()}</span>
             <span style={{ color: getColor() }}>{getIcon()}</span>
