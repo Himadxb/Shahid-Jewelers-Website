@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import ShinyText from './ShinyText';
 
 const Hero = () => {
   return (
@@ -21,7 +22,7 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           style={{ fontSize: '4rem', marginBottom: '1rem', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}
         >
-          Timeless Elegance
+          <ShinyText text="Timeless Elegance" speed={3} />
         </motion.h1>
         <motion.p 
           initial={{ opacity: 0, y: 30 }}

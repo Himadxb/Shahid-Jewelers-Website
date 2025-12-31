@@ -150,3 +150,23 @@ button {
   
   .section-padding { padding: var(--spacing-md) 0; }
 }
+
+/* Shiny Text Animation */
+@keyframes shine {
+  0% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: -100%;
+  }
+}
+
+.shiny-text {
+  animation-name: shine;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.shiny-text.disabled {
+  animation: none;
+}
