@@ -29,6 +29,8 @@ const featuredProducts = [
   }
 ];
 
+import BlurText from '../components/BlurText';
+
 const Home = () => {
   return (
     <>
@@ -36,7 +38,13 @@ const Home = () => {
       
       <section className="section-padding container">
         <div className="text-center" style={{ marginBottom: '3rem' }}>
-          <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>Featured Collection</h2>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+            <BlurText 
+              text="Featured Collection" 
+              className="h2-style"
+              delay={150}
+            />
+          </div>
           <p style={{ color: '#aaa' }}>Handpicked pieces for the discerning collector.</p>
         </div>
         

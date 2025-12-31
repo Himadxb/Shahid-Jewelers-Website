@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProductCard from '../components/ProductCard';
+import SpotlightCard from '../components/SpotlightCard';
 
 const products = [
   { id: 1, name: 'Royal Gold Necklace', price: 12500, category: 'Necklaces', image: 'https://images.unsplash.com/photo-1599643478518-17488fbbcd75?q=80&w=1974&auto=format&fit=crop' },
@@ -53,7 +54,9 @@ const Shop = () => {
         {/* Grid */}
         <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '2rem' }}>
           {filteredProducts.map(product => (
-            <ProductCard key={product.id} product={product} />
+            <SpotlightCard key={product.id} spotlightColor="rgba(212, 175, 55, 0.2)">
+              <ProductCard product={product} />
+            </SpotlightCard>
           ))}
         </div>
       </div>
