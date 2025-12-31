@@ -20,11 +20,15 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     console.log("AuthProvider: Setting up onAuthStateChanged");
     let mounted = true;
+    let timeoutId;
 
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       console.log("AuthProvider: onAuthStateChanged triggered", user ? "User found" : "No user");
       if (!mounted) return;
       
+      // Clear timeout since we got a response
+      if (timeoutId) clearTimeout(timeoutId);
+
       if (user) {
         try {
           // Fetch additional user data from Firestore if needed
@@ -47,7 +51,7 @@ export const AuthProvider = ({ children }) => {
     });
 
     // Safety timeout: If Firebase takes too long, stop loading
-    const timeoutId = setTimeout(() => {
+    timeoutId = setTimeout(() => {
       if (mounted && loading) {
         console.warn("AuthProvider: Firebase auth timed out, forcing loading false");
         setLoading(false);
@@ -57,7 +61,7 @@ export const AuthProvider = ({ children }) => {
     return () => {
       mounted = false;
       unsubscribe();
-      clearTimeout(timeoutId);
+      if (timeoutId) clearTimeout(timeoutId);
     };
   }, []);
 
