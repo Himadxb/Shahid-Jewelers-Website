@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { GoldProvider } from './context/GoldContext';
@@ -7,16 +7,16 @@ import { AuthProvider } from './context/AuthContext';
 import { NotificationProvider } from './context/NotificationContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import Shop from './pages/Shop';
-import LiveGold from './pages/LiveGold';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Profile from './pages/Profile';
-import Cart from './pages/Cart';
-import Checkout from './pages/Checkout';
+const Home = lazy(() => import('./pages/Home'));
+const Shop = lazy(() => import('./pages/Shop'));
+const LiveGold = lazy(() => import('./pages/LiveGold'));
+const About = lazy(() => import('./pages/About'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Login = lazy(() => import('./pages/Login'));
+const Signup = lazy(() => import('./pages/Signup'));
+const Profile = lazy(() => import('./pages/Profile'));
+const Cart = lazy(() => import('./pages/Cart'));
+const Checkout = lazy(() => import('./pages/Checkout'));
 
 // Wrapper component to handle page transitions
 const AnimatedRoutes = () => {
@@ -54,6 +54,11 @@ const PageWrapper = ({ children }) => (
 
 import GoldDustBackground from './components/GoldDustBackground';
 
+const RouteFallback = () => (
+  <div style={{ minHeight: '40vh', display: 'grid', placeItems: 'center', color: 'var(--color-gold-primary)' }}>
+    Loading...
+  </div>
+);
 
 
 function App() {
@@ -67,7 +72,9 @@ function App() {
                 <GoldDustBackground />
                 <Navbar />
                 <main style={{ flex: 1 }}>
-                  <AnimatedRoutes />
+                  <Suspense fallback={<RouteFallback />}>
+                    <AnimatedRoutes />
+                  </Suspense>
                 </main>
                 <Footer />
               </div>

@@ -61,6 +61,10 @@ const Home = () => {
             <img 
               src="https://images.unsplash.com/photo-1584302179602-e4c3d3fd629d?q=80&w=2068&auto=format&fit=crop" 
               alt="Craftsmanship" 
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="800"
               style={{ width: '100%', borderRadius: 'var(--border-radius)' }} 
             />
           </div>

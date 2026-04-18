@@ -36,6 +36,11 @@ const ProductCard = ({ product }) => {
         <img 
           src={product.image} 
           alt={product.name} 
+          loading="lazy"
+          decoding="async"
+          width="600"
+          height="600"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s' }}
           onMouseOver={(e) => e.target.style.transform = 'scale(1.1)'}
           onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
